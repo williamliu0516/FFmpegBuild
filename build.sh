@@ -837,6 +837,11 @@ COMMON_FLAGS=(
     # tvOS doesn't expose LPCM-side audio passthrough that the
     # lossless was actually delivering on most setups anyway.
     --enable-encoder=eac3
+    # AAC encoder for receivers that decode nothing else. Third-party AirPlay
+    # TVs (a Hisense Roku TV, 2026-10-25) refuse FLAC outright and stall on
+    # E-AC-3 after taking the first segments, and play only AAC, so the
+    # AudioBridge re-encodes to AAC stereo when a route proves that picky.
+    --enable-encoder=aac
 )
 
 build_one() {
